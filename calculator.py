@@ -3,7 +3,10 @@ from mcp.server.fastmcp import FastMCP
 import math
 
 # instantiate an MCP server client
-mcp = FastMCP("Hello World")
+import os
+port = int(os.environ.get("PORT", 4000))
+mcp = FastMCP("Hello World", host="0.0.0.0", port=port)
+
 
 # DEFINE TOOLS
 
@@ -96,9 +99,7 @@ def get_greeting(name: str) -> str:
  
  # execute and return the stdio output
 if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 8000))  # Render will provide PORT
-    mcp.run(transport="sse", host="0.0.0.0", port=port)
+    mcp.run(transport="sse")
 
 
 
